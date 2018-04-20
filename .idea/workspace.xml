@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38ed231d-e783-4ab5-a6b3-16c8ba5df796" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/example/vorappServer/DataLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/DemoApplication.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/DemoApplication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/controllers/ClientsController.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/controllers/ClientsController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/controllers/UsersController.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/controllers/UsersController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/extraClass/ClientsHelpClass.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/extraClass/ClientsHelpClass.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/model/Client.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/model/Client.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/model/User.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/model/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/repo/ClientRepo.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/repo/ClientRepo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/repo/UserRepo.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/repo/UserRepo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/webSecurity/WebSecurityConfig.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/webSecurity/WebSecurityConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/webSecurity/WebSecurityConfiguration$1.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/webSecurity/WebSecurityConfiguration$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/example/vorappServer/webSecurity/WebSecurityConfiguration.class" afterPath="$PROJECT_DIR$/target/classes/com/example/vorappServer/webSecurity/WebSecurityConfiguration.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/vorappServer/DemoApplication.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/vorappServer/DemoApplication.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -711,7 +698,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-178" width="1936" height="1056" extended-state="7" />
+    <frame x="-1928" y="-178" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
