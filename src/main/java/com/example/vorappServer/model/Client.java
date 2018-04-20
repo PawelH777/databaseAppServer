@@ -1,0 +1,51 @@
+package com.example.vorappServer.model;
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+/**
+ * Created by Paweł on 2018-02-03.
+ */
+
+@Data
+@Entity
+@Table(name = "clients")
+public class Client implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long client_id;
+
+    @Column(name = "firm_name")
+    private String firmName;
+
+    public long getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(long client_id) {
+        this.client_id = client_id;
+    }
+
+    public String getFirmName() {
+        return firmName;
+    }
+
+    public void setFirmName(String firmName) {
+        this.firmName = firmName;
+    }
+
+    public Client() {
+    }
+
+    public Client(String firm_name) {
+        this.firmName = firmName;
+    }
+
+    public Client(long client_id, String firm_name) {
+        this.client_id = client_id;
+        this.firmName = firmName;
+    }
+}
