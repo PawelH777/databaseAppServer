@@ -35,7 +35,7 @@ public class DimController {
     }
 
     @PostMapping("/dim/find")
-    public  List<Dimiensions> findByDim(@RequestBody DimsHelpClass dimsHelpClass){
+    public List findByDim(@RequestBody DimsHelpClass dimsHelpClass){
         return dimRepo.findByDim(dimsHelpClass.getFirstDimension(), dimsHelpClass.getSecondDimension(),
                 dimsHelpClass.getThickness(), dimsHelpClass.getWeight());
     }

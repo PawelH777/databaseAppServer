@@ -1,5 +1,6 @@
 package com.example.vorappServer.repo;
 
+import com.example.vorappServer.customRepo.storyOrdersRepoCustom;
 import com.example.vorappServer.model.ordersStory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -14,6 +15,6 @@ import java.util.List;
  */
 
 @Repository
-public interface ordersStoryRepo extends JpaRepository<ordersStory, Long> {
+public interface ordersStoryRepo extends JpaRepository<ordersStory, Long>, storyOrdersRepoCustom {
 
 }

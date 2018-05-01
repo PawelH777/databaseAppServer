@@ -36,6 +36,16 @@ public class OrdersStoryController {
         return  new ResponseEntity<>(ord.toObject(), HttpStatus.OK);
     }
 
+    @PostMapping("/clients")
+    public ResponseEntity<List> findByClientId(@RequestBody Client client){
+        return new ResponseEntity<List>(ordersStoryRepo.findByClient(client), HttpStatus.OK);
+    }
+
+    @PostMapping("/dims")
+    public ResponseEntity<List> findByDim(@RequestBody Dimiensions dimension){
+        return new ResponseEntity<List>(ordersStoryRepo.findByDimension(dimension), HttpStatus.OK);
+    }
+
     @PostMapping(value = "/createorder")
     public ordersStory createOrder(@RequestBody ordersStory order){
         return ordersStoryRepo.save(order);
@@ -63,6 +73,19 @@ public class OrdersStoryController {
 
         ordersStoryRepo.delete(ordDelete);
 
+        return ResponseEntity.ok().build();
+    }
+
+
+    @RequestMapping(value = "/delete/client")
+    public ResponseEntity<Object> deleteOrdersByClient(@RequestBody Client client){
+        ordersStoryRepo.deleteByClient(client);
+        return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/delete/dim")
+    public ResponseEntity<Object> deleteOrdersByDim(@RequestBody Dimiensions dim){
+        ordersStoryRepo.deleteByDimension(dim);
         return ResponseEntity.ok().build();
     }
 }

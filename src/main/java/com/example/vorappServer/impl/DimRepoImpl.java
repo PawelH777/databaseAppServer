@@ -17,10 +17,11 @@ import java.util.List;
 @Repository
 public class DimRepoImpl implements DimRepoCustom{
     @PersistenceContext
+    private
     EntityManager entityManager;
 
     @Override
-    public List<Dimiensions> findByDim(BigDecimal firstDimension, BigDecimal secondDimension, BigDecimal thickness, BigDecimal weight){
+    public List findByDim(BigDecimal firstDimension, BigDecimal secondDimension, BigDecimal thickness, BigDecimal weight){
         Query query = entityManager.createQuery("select d from Dimiensions d where d.firstDimension = :first and d.secondDimension = :second" +
                 " and d.thickness = :third and d.weight = :fourth", Dimiensions.class);
 
