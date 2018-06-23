@@ -1,6 +1,5 @@
 package com.example.vorappServer.model;
 
-import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +8,6 @@ import java.io.Serializable;
  * Created by Paweł on 2018-02-02.
  */
 
-@Data
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -27,7 +25,6 @@ public class User implements Serializable {
     public long getUser_id() {
         return user_id;
     }
-
     public void setUser_id(long user_id) {
         this.user_id = user_id;
     }
@@ -35,7 +32,6 @@ public class User implements Serializable {
     public String getLogin() {
         return login;
     }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -43,7 +39,6 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -65,5 +60,12 @@ public class User implements Serializable {
         login = a;
         password = b;
         admin = c;
+    }
+
+    public User(long user_id, String login, String password, boolean admin) {
+        this.user_id = user_id;
+        this.login = login;
+        this.password = password;
+        this.admin = admin;
     }
 }

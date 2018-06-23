@@ -1,6 +1,5 @@
 package com.example.vorappServer.model;
 
-import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +10,6 @@ import java.util.List;
  * Created by Paweł on 2018-02-03.
  */
 
-@Data
 @Entity
 @Table(name = "dimiensions")
 public class Dimiensions implements Serializable {

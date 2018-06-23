@@ -2,7 +2,9 @@ package com.example.vorappServer.controllers;
 
 import com.example.vorappServer.extraClass.ClientsHelpClass;
 import com.example.vorappServer.model.Client;
-import com.example.vorappServer.repo.ClientRepo;
+import com.example.vorappServer.model.Orders;
+import com.example.vorappServer.model.OrdersFinished;
+import com.example.vorappServer.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,18 @@ public class ClientsController {
 
     @Autowired
     private ClientRepo clientRepo;
+
+    @Autowired
+    private OrdersRepo ordersRepo;
+
+    @Autowired
+    private OrdersFinishedRepo ordersFinishedRepo;
+
+    @Autowired
+    private SingleOrdersRepo singleOrdersRepo;
+
+    @Autowired
+    private SingleOrdersFinishedRepo singleOrdersFinishedRepo;
 
     @RequestMapping
     public ResponseEntity<Collection<Client>> findAll(){
@@ -58,9 +72,19 @@ public class ClientsController {
     @DeleteMapping(value = "/client/delete/{id}")
     public ResponseEntity<Object> deleteClient(@PathVariable(value = "id") Long clientId){
         Client cliDelete = clientRepo.findById(clientId).orElse(null);
-
-        clientRepo.delete(cliDelete);
-
+        if(cliDelete != null){
+            List orders = ordersRepo.findByClient(cliDelete);
+            List finishedOrders = ordersFinishedRepo.findByClient(cliDelete);
+            if(orders.size() > 0)
+                for(Object object : orders)
+                    singleOrdersRepo.deleteByOrders((Orders) object);
+            if(finishedOrders.size() > 0)
+                for(Object object : finishedOrders)
+                    singleOrdersFinishedRepo.deleteByOrderstory((OrdersFinished) object);
+            ordersRepo.deleteByClient(cliDelete);
+            ordersFinishedRepo.deleteByClient(cliDelete);
+            clientRepo.delete(cliDelete);
+        }
         return ResponseEntity.ok().build();
     }
 }

@@ -3,6 +3,8 @@ package com.example.vorappServer.controllers;
 import com.example.vorappServer.extraClass.DimsHelpClass;
 import com.example.vorappServer.model.Dimiensions;
 import com.example.vorappServer.repo.DimRepo;
+import com.example.vorappServer.repo.SingleOrdersFinishedRepo;
+import com.example.vorappServer.repo.SingleOrdersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,12 @@ public class DimController {
 
     @Autowired
     private DimRepo dimRepo;
+
+    @Autowired
+    private SingleOrdersRepo singleOrdersRepo;
+
+    @Autowired
+    private SingleOrdersFinishedRepo singleOrdersFinishedRepo;
 
     @RequestMapping
     public ResponseEntity<Collection<Dimiensions>> findAll(){
@@ -61,9 +69,11 @@ public class DimController {
     @DeleteMapping(value = "/dim/delete/{id}")
     public ResponseEntity<Object> deleteDim(@PathVariable(value = "id") Long dimId){
         Dimiensions dimDelete = dimRepo.findById(dimId).orElse(null);
-
-        dimRepo.delete(dimDelete);
-
+        if(dimDelete != null){
+            singleOrdersRepo.deleteByDimension(dimDelete);
+            singleOrdersFinishedRepo.deleteByDimension(dimDelete);
+            dimRepo.delete(dimDelete);
+        }
         return ResponseEntity.ok().build();
     }
 }

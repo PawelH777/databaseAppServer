@@ -19,60 +19,30 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "orders")
 public class Orders<T> implements Serializable {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
-    @OneToOne
-    @JoinColumn(name = "dimensionId")
-    private Dimiensions dimension;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "clientId")
     private Client client;
 
-    @Column(columnDefinition = "Numeric(8,3) NOT NULL")
-    private BigDecimal metrs;
-
-    @Column(columnDefinition = "Numeric(8,3) NOT NULL")
+    @Column(columnDefinition = "Numeric(8,2) NOT NULL")
     private BigDecimal materials;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate receive_date;
+    private LocalDate order_receive_date;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate order_date;
 
-    private String Note;
+    private String order_note;
 
-    @Override
-    public String toString(){
-        String result = String.format("Zamówienie[order_id=%d, metrs=%f, materials=%f, receive_date=%td, order_date=%td, Note=%s]%n",
-                order_id, metrs, materials, receive_date, order_date, Note);
-        if(dimension != null){
-            result += String.format("Wymiary[dimension_id=%d, first_dimension=%f, second_dimension=%f, thickness=%f, weight=%f]%n",
-                    dimension.getDimension_id(), dimension.getFirstDimension(), dimension.getSecondDimension(), dimension.getThickness(), dimension.getWeight());
-        }
-        if(client !=null){
-            result += String.format("Klient[client_id=%d, firmName=%s]%n", client.getClient_id(), client.getFirmName());
-        }
-        return result;
-    }
+    private Long single_orders_completed;
 
-    public Object[] toObject(){
-
-        Orders ord = new Orders(dimension, client, metrs, materials, receive_date, order_date, Note);
-        Dimiensions dim = new Dimiensions(dimension.getDimension_id(), dimension.getFirstDimension(), dimension.getSecondDimension(), dimension.getThickness(), dimension.getWeight());
-        Client cli = new Client(client.getClient_id(), client.getFirmName());
-
-        return new Object[]{
-               ord, dim, cli
-        };
-    }
-
-
+    private Long single_orders_unfinished;
 
     public Long getOrder_id() {
         return order_id;
@@ -80,14 +50,6 @@ public class Orders<T> implements Serializable {
 
     public void setOrder_id(Long order_id) {
         this.order_id = order_id;
-    }
-
-    public Dimiensions getDimension() {
-        return dimension;
-    }
-
-    public void setDimension(Dimiensions dimension) {
-        this.dimension = dimension;
     }
 
     public Client getClient() {
@@ -98,14 +60,6 @@ public class Orders<T> implements Serializable {
         this.client = client;
     }
 
-    public BigDecimal getMetrs() {
-        return metrs;
-    }
-
-    public void setMetrs(BigDecimal metrs) {
-        this.metrs = metrs;
-    }
-
     public BigDecimal getMaterials() {
         return materials;
     }
@@ -114,12 +68,12 @@ public class Orders<T> implements Serializable {
         this.materials = materials;
     }
 
-    public LocalDate getReceive_date() {
-        return receive_date;
+    public LocalDate getOrder_receive_date() {
+        return order_receive_date;
     }
 
-    public void setReceive_date(LocalDate receive_date) {
-        this.receive_date = receive_date;
+    public void setOrder_receive_date(LocalDate order_receive_date) {
+        this.order_receive_date = order_receive_date;
     }
 
     public LocalDate getOrder_date() {
@@ -130,33 +84,51 @@ public class Orders<T> implements Serializable {
         this.order_date = order_date;
     }
 
-    public String getNote() {
-        return Note;
+    public String getOrder_note() {
+        return order_note;
     }
 
-    public void setNote(String note) {
-        Note = note;
+    public void setOrder_note(String order_note) {
+        this.order_note = order_note;
     }
 
-    public Orders(Dimiensions dimension, Client client, BigDecimal metrs, BigDecimal materials, LocalDate receive_date, LocalDate order_date, String note) {
-        this.dimension = dimension;
-        this.client = client;
-        this.metrs = metrs;
-        this.materials = materials;
-        this.receive_date = receive_date;
-        this.order_date = order_date;
-        Note = note;
+    public Long getSingle_orders_completed() {
+        return single_orders_completed;
     }
 
-    public Orders(Long order_id, Dimiensions dimension, Client client, BigDecimal metrs, BigDecimal materials, LocalDate receive_date, LocalDate order_date, String note) {
+    public void setSingle_orders_completed(Long single_orders_completed) {
+        this.single_orders_completed = single_orders_completed;
+    }
+
+    public Long getSingle_orders_unfinished() {
+        return single_orders_unfinished;
+    }
+
+    public void setSingle_orders_unfinished(Long single_orders_unfinished) {
+        this.single_orders_unfinished = single_orders_unfinished;
+    }
+
+    public Orders(Long order_id, Client client, BigDecimal materials, LocalDate order_receive_date, LocalDate order_date,
+                  String order_note, Long single_orders_completed, Long single_orders_unfinished) {
         this.order_id = order_id;
-        this.dimension = dimension;
         this.client = client;
-        this.metrs = metrs;
         this.materials = materials;
-        this.receive_date = receive_date;
+        this.order_receive_date = order_receive_date;
         this.order_date = order_date;
-        Note = note;
+        this.order_note = order_note;
+        this.single_orders_completed = single_orders_completed;
+        this.single_orders_unfinished = single_orders_unfinished;
+    }
+
+    public Orders(Client client, BigDecimal materials, LocalDate order_receive_date, LocalDate order_date, String order_note,
+                  Long single_orders_completed, Long single_orders_unfinished) {
+        this.client = client;
+        this.materials = materials;
+        this.order_receive_date = order_receive_date;
+        this.order_date = order_date;
+        this.order_note = order_note;
+        this.single_orders_completed = single_orders_completed;
+        this.single_orders_unfinished = single_orders_unfinished;
     }
 
     public Orders() {

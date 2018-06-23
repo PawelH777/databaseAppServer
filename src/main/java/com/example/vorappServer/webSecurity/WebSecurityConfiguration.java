@@ -23,6 +23,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
     @Autowired
+    private
     UserRepo userRepo;
 
     @Override
@@ -30,7 +31,7 @@ public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdap
         auth.userDetailsService(userDetailsService());}
 
     @Bean
-    UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
