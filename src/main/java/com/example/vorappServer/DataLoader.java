@@ -1,8 +1,12 @@
 package com.example.vorappServer;
 
+import com.example.vorappServer.model.Client;
 import com.example.vorappServer.model.Dimiensions;
+import com.example.vorappServer.model.Orders;
 import com.example.vorappServer.model.User;
+import com.example.vorappServer.repo.ClientRepo;
 import com.example.vorappServer.repo.DimRepo;
+import com.example.vorappServer.repo.OrdersRepo;
 import com.example.vorappServer.repo.UserRepo;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +34,11 @@ public class DataLoader implements ApplicationRunner{
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private ClientRepo clientRepo;
+
+    @Autowired
+    private OrdersRepo ordersRepo;
 
     public void run(ApplicationArguments args){
 
@@ -37,6 +47,8 @@ public class DataLoader implements ApplicationRunner{
         User usr = new User("Admin", pass, true);
         List<Dimiensions> dimsList = new ArrayList<>();
         Dimiensions dim;
+        Client clientObject;
+        Orders orderObject;
 
         ResponseEntity<List<User>> responseUsr = new ResponseEntity<List<User>>(userRepo.findByLogin("Admin"), HttpStatus.OK);
 
@@ -339,6 +351,20 @@ public class DataLoader implements ApplicationRunner{
 
             dim = new Dimiensions(BigDecimal.valueOf(100.0),BigDecimal.valueOf(100.0),BigDecimal.valueOf(10.0), BigDecimal.valueOf(1.350));
             dimRepo.save(dim);
+        }
+
+        try{
+            for(int a = 0; a < 10000; a++){
+                LocalDate rcvDate = LocalDate.now();
+                LocalDate ordDate = LocalDate.now().plusDays(5);
+                String clientsFirmName = "klient" + a;
+                clientObject = clientRepo.save(new Client(clientsFirmName));
+                ordersRepo.save(new Orders(clientObject, BigDecimal.TEN, rcvDate, ordDate, "",
+                        4L, 5L));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 }

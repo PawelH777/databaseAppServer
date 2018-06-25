@@ -38,11 +38,11 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String firm_name) {
+    public Client(String firmName) {
         this.firmName = firmName;
     }
 
-    public Client(long client_id, String firm_name) {
+    public Client(long client_id, String firmName) {
         this.client_id = client_id;
         this.firmName = firmName;
     }
