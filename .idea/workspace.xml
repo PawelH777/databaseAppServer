@@ -4,7 +4,6 @@
     <list default="true" id="38ed231d-e783-4ab5-a6b3-16c8ba5df796" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vorappServer/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vorappServer/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vorappServer/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vorappServer/model/Client.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,47 +31,21 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.59531015">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="DataLoader.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/DataLoader.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="363" column="13" lean-forward="true" selection-start-line="363" selection-start-column="13" selection-end-line="363" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="Orders.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/model/Orders.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1054">
-                  <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/model/Client.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-                  <folding>
-                    <element signature="e#754#755#0" expanded="true" />
-                    <element signature="e#794#795#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="DataLoader.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/DataLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="356" column="42" lean-forward="true" selection-start-line="356" selection-start-column="42" selection-end-line="356" selection-end-column="42" />
+              <folding>
+                <element signature="e#1598#1610#0" expanded="true" />
+                <element signature="e#1733#1752#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -185,57 +158,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="vorappServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vorappServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vorappServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vorappServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vorappServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vorappServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vorappServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vorappServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vorappServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vorappServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vorappServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vorappServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vorappServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vorappServer" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../vorApp_ver40 - new look" />
@@ -642,33 +565,33 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3278867" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info id="Image Layers" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.11119516" side_tool="true" weight="0.50816995" />
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.32995737" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3278867" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.88880485" weight="0.18811882" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3278867" />
+      <window_info anchor="right" id="FAQ Robot" order="10" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.20272315" />
       <window_info id="Project Explorer" order="8" />
       <window_info id="Job Explorer" order="9" weight="0.32995737" />
       <window_info anchor="bottom" id="Console" order="8" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.37623763" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3278867" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.32343236" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info id="Image Layers" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3278867" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.88880485" weight="0.18811882" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3278867" />
-      <window_info anchor="right" id="FAQ Robot" order="10" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.20272315" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37623763" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32343236" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -678,24 +601,24 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="DB Browser" order="10" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
       <window_info id="Designer" order="3" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Properties" order="4" />
-      <window_info id="Image Layers" order="5" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.88880485" visible="true" weight="0.18811882" />
+      <window_info id="Image Layers" order="5" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="DB Browser" order="10" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Project Explorer" order="8" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="right" id="Properties" order="4" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3278867" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.11119516" side_tool="true" weight="0.50816995" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info id="Job Explorer" order="9" weight="0.32995737" />
@@ -714,6 +637,7 @@
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3278867" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37623763" />
     </layout-to-restore>
   </component>
@@ -1059,28 +983,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/model/Orders.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/model/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1054">
-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+        <state relative-caret-position="255">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/model/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/model/Orders.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#754#755#0" expanded="true" />
-            <element signature="e#794#795#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/DataLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="363" column="13" lean-forward="true" selection-start-line="363" selection-start-column="13" selection-end-line="363" selection-end-column="13" />
+        <state relative-caret-position="269">
+          <caret line="356" column="42" lean-forward="true" selection-start-line="356" selection-start-column="42" selection-end-line="356" selection-end-column="42" />
+          <folding>
+            <element signature="e#1598#1610#0" expanded="true" />
+            <element signature="e#1733#1752#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

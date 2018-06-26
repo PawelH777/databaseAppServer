@@ -354,7 +354,7 @@ public class DataLoader implements ApplicationRunner{
         }
 
         try{
-            for(int a = 0; a < 10000; a++){
+            for(int a = 0; a < 3000; a++){
                 LocalDate rcvDate = LocalDate.now();
                 LocalDate ordDate = LocalDate.now().plusDays(5);
                 String clientsFirmName = "klient" + a;
