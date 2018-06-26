@@ -353,18 +353,18 @@ public class DataLoader implements ApplicationRunner{
             dimRepo.save(dim);
         }
 
-        try{
-            for(int a = 0; a < 3000; a++){
-                LocalDate rcvDate = LocalDate.now();
-                LocalDate ordDate = LocalDate.now().plusDays(5);
-                String clientsFirmName = "klient" + a;
-                clientObject = clientRepo.save(new Client(clientsFirmName));
-                ordersRepo.save(new Orders(clientObject, BigDecimal.TEN, rcvDate, ordDate, "",
-                        4L, 5L));
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+//        try{
+//            for(int a = 0; a < 3000; a++){
+//                LocalDate rcvDate = LocalDate.now();
+//                LocalDate ordDate = LocalDate.now().plusDays(5);
+//                String clientsFirmName = "klient" + a;
+//                clientObject = clientRepo.save(new Client(clientsFirmName));
+//                ordersRepo.save(new Orders(clientObject, BigDecimal.TEN, rcvDate, ordDate, "",
+//                        4L, 5L));
+//            }
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//        }
     }
 }

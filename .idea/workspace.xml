@@ -35,12 +35,8 @@
       <file leaf-file-name="DataLoader.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/DataLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="356" column="42" lean-forward="true" selection-start-line="356" selection-start-column="42" selection-end-line="356" selection-end-column="42" />
-              <folding>
-                <element signature="e#1598#1610#0" expanded="true" />
-                <element signature="e#1733#1752#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="252">
+              <caret line="355" selection-start-line="355" selection-start-column="2" selection-end-line="367" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -621,12 +617,12 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.11119516" side_tool="true" weight="0.50816995" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Job Explorer" order="9" weight="0.32995737" />
       <window_info id="Nl-Palette" order="2" />
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.32995737" />
       <window_info anchor="right" id="FAQ Robot" order="10" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20272315" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32343236" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -637,7 +633,7 @@
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3278867" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37623763" />
     </layout-to-restore>
   </component>
@@ -999,12 +995,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/vorappServer/DataLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="356" column="42" lean-forward="true" selection-start-line="356" selection-start-column="42" selection-end-line="356" selection-end-column="42" />
-          <folding>
-            <element signature="e#1598#1610#0" expanded="true" />
-            <element signature="e#1733#1752#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="252">
+          <caret line="355" selection-start-line="355" selection-start-column="2" selection-end-line="367" selection-end-column="11" />
         </state>
       </provider>
     </entry>
