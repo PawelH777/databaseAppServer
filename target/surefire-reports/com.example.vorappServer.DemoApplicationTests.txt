@@ -1,4 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.example.vorappServer.DemoApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 32.912 s - in com.example.vorappServer.DemoApplicationTests
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in com.example.vorappServer.DemoApplicationTests
+initializationError(com.example.vorappServer.DemoApplicationTests)  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class org.springframework.test.context.junit4.SpringRunner
+

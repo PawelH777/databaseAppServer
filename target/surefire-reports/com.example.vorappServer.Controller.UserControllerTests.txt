@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.example.vorappServer.Controller.UserControllerTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.888 s <<< FAILURE! - in com.example.vorappServer.Controller.UserControllerTests
+initializationError(com.example.vorappServer.Controller.UserControllerTests)  Time elapsed: 0.01 s  <<< ERROR!
+java.lang.StackOverflowError
+

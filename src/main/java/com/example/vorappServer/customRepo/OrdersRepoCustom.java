@@ -1,6 +1,6 @@
 package com.example.vorappServer.customRepo;
 
-import com.example.vorappServer.model.Client;
+import com.example.vorappServer.model.Clients;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -9,7 +9,8 @@ import java.util.List;
  * Created by Paweł on 2018-04-21.
  */
 public interface OrdersRepoCustom {
-    List findByClient(Client client);
+    List findByClients(Clients clients);
+    List findByOrderFinished(Boolean finished);
     @Transactional
-    void deleteByClient(Client client);
+    void deleteByClients(Clients clients);
 }

@@ -1,9 +1,8 @@
 package com.example.vorappServer.controllers;
 
+import com.example.vorappServer.Services.SingleOrdersServices;
 import com.example.vorappServer.model.*;
-import com.example.vorappServer.repo.OrdersFinishedRepo;
 import com.example.vorappServer.repo.OrdersRepo;
-import com.example.vorappServer.repo.SingleOrdersFinishedRepo;
 import com.example.vorappServer.repo.SingleOrdersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,13 +24,10 @@ public class OrdersController {
     private OrdersRepo ordersRepo;
 
     @Autowired
-    private OrdersFinishedRepo ordersFinishedRepo;
-
-    @Autowired
     private SingleOrdersRepo singleOrdersRepo;
 
     @Autowired
-    private SingleOrdersFinishedRepo singleOrdersFinishedRepo;
+    private SingleOrdersServices singleOrdersServices;
 
     @RequestMapping
     public ResponseEntity<List<Orders>> findAll(){
@@ -45,8 +41,13 @@ public class OrdersController {
     }
 
     @PostMapping("/clients")
-    public ResponseEntity<List> findByClientId(@RequestBody Client client){
-        return new ResponseEntity<List>(ordersRepo.findByClient(client), HttpStatus.OK);
+    public ResponseEntity<List> findByClientId(@RequestBody Clients clients){
+        return new ResponseEntity<List>(ordersRepo.findByClients(clients), HttpStatus.OK);
+    }
+
+    @GetMapping("/finished/{finished}")
+    public ResponseEntity<List> findByOrderFinished(@PathVariable("finished") Boolean finished){
+        return new ResponseEntity<List>(ordersRepo.findByOrderFinished(finished), HttpStatus.OK);
     }
 
     @PostMapping(value = "/createorder")
@@ -55,48 +56,51 @@ public class OrdersController {
     }
 
     @PutMapping(value = "/order/update/{id}")
-    public Orders updateOrder(@PathVariable(value = "id") Long orderId, @Valid @RequestBody Orders order){
+    public ResponseEntity<Orders>  updateOrder(@PathVariable(value = "id") Long orderId, @Valid @RequestBody Orders order){
         Orders findorder = ordersRepo.findById(orderId)
                 .orElse(null);
 
-        findorder.setClient(order.getClient());
+        if(findorder == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        findorder.setClients(order.getClients());
         findorder.setMaterials(order.getMaterials());
         findorder.setOrder_receive_date(order.getOrder_receive_date());
         findorder.setOrder_date(order.getOrder_date());
         findorder.setOrder_note(order.getOrder_note());
-        findorder.setSingle_orders_completed(order.getSingle_orders_completed());
+        findorder.setSingle_orders_finished(order.getSingle_orders_finished());
         findorder.setSingle_orders_unfinished(order.getSingle_orders_unfinished());
+        findorder.setOrderFinished(order.getOrderFinished());
 
-        return ordersRepo.save(findorder);
+        return new ResponseEntity<Orders>(ordersRepo.save(findorder), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/order/change-status")
+    public ResponseEntity<Orders> changeOrdersStatus(@RequestBody Orders order){
+
+        if(order == null)
+            return new ResponseEntity<Orders>(HttpStatus.NOT_FOUND);
+
+        if(order.getOrderFinished())
+            order.setOrderFinished(false);
+        else
+            order.setOrderFinished(true);
+
+        return new ResponseEntity<>(ordersRepo.save(order), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/order/delete/{id}")
     public ResponseEntity<Object> deleteOrder(@PathVariable(value = "id") Long orderId){
         Orders ordDelete = ordersRepo.findById(orderId).orElse(null);
-        if(ordDelete != null)
-            singleOrdersRepo.deleteByOrders(ordDelete);
+        assert ordDelete != null;
+        singleOrdersServices.deleteSingleOrdersByOrder(ordDelete);
         ordersRepo.delete(ordDelete);
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/delete/client")
-    public ResponseEntity<Object> deleteOrdersByClient(@RequestBody Client client){
-        ordersRepo.deleteByClient(client);
-        return ResponseEntity.ok().build();
-    }
-
-    @RequestMapping(value = "/move-order")
-    public ResponseEntity<Object> moveOrderToOrdersFinished(@RequestBody Orders order){
-        OrdersFinished ordersFinished = ordersFinishedRepo.save( new OrdersFinished(order.getClient(),
-                order.getMaterials(), order.getOrder_receive_date(), order.getOrder_date(), order.getOrder_note(),
-                order.getSingle_orders_completed(), order.getSingle_orders_unfinished()));
-        List<SingleOrders> allSingleOrdersByOrder = singleOrdersRepo.findByOrders(order);
-        for(SingleOrders singleOrder : allSingleOrdersByOrder)
-            singleOrdersFinishedRepo.save(new SingleOrdersFinished(ordersFinished, singleOrder.getDimension(),
-                    singleOrder.getQuantity(), singleOrder.getLength(), singleOrder.getMetrs(), singleOrder.getMaterials(),
-                    singleOrder.getFinished()));
-        singleOrdersRepo.deleteByOrders(order);
-        ordersRepo.delete(order);
+    @RequestMapping(value = "/delete/clients")
+    public ResponseEntity<Object> deleteOrdersByClient(@RequestBody Clients clients){
+        ordersRepo.deleteByClients(clients);
         return ResponseEntity.ok().build();
     }
 }

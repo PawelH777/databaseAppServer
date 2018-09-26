@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "clients")
-public class Client implements Serializable {
+public class Clients implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,14 +35,14 @@ public class Client implements Serializable {
         this.firmName = firmName;
     }
 
-    public Client() {
+    public Clients() {
     }
 
-    public Client(String firmName) {
+    public Clients(String firmName) {
         this.firmName = firmName;
     }
 
-    public Client(long client_id, String firmName) {
+    public Clients(long client_id, String firmName) {
         this.client_id = client_id;
         this.firmName = firmName;
     }

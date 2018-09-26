@@ -18,16 +18,16 @@ public class Dimiensions implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long dimension_id;
 
-    @Column(name = "first_dimension", columnDefinition = "Numeric(8,3) NOT NULL")
+    @Column(name = "first_dimension", columnDefinition = "Numeric(9,0) NOT NULL")
     private BigDecimal firstDimension;
 
-    @Column(name = "second_dimension", columnDefinition = "Numeric(8,3) NOT NULL")
+    @Column(name = "second_dimension", columnDefinition = "Numeric(9,0) NOT NULL")
     private BigDecimal secondDimension;
 
-    @Column(columnDefinition = "Numeric(8,3) NOT NULL")
+    @Column(columnDefinition = "Numeric(9,1) NOT NULL")
     private BigDecimal thickness;
 
-    @Column(columnDefinition = "Numeric(8,3) NOT NULL")
+    @Column(columnDefinition = "Numeric(9,3) NOT NULL")
     private BigDecimal weight;
 
     public long getDimension_id() {

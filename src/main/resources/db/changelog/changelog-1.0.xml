@@ -7,127 +7,107 @@
     <changeSet author="Paweł Hornik" id="changelog-1.0">
         <createTable tableName="users">
             <column name="user_id" type="bigserial">
-                <constraints nullable="true" primaryKey="true" unique="true"/>
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="login" type="text">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
             <column name="password" type="varchar(255)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
             <column name="admin" type="boolean">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
         <createTable tableName="clients">
             <column name="client_id" type="bigserial">
-                <constraints nullable="true" primaryKey="true" unique="true"/>
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="firm_name" type="text">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
         <createTable tableName="dimiensions">
             <column name="dimension_id" type="bigserial">
-                <constraints nullable="true" primaryKey="true" unique="true"/>
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="first_dimension" type="numeric(9,0)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
             <column name="second_dimension" type="numeric(9,0)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="thickness" type="numeric(6,3)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="thickness" type="numeric(9,1)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="weight" type="numeric(6,3)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="weight" type="numeric(9,3)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
         <createTable tableName="orders">
             <column name="order_id" type="bigserial">
-                <constraints nullable="true" primaryKey="true" unique="true"/>
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
-            <column name="materials" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="order_receive_date" type="date">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="order_date" type="date">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="order_note" type="text">
+            <column name="materials" type="numeric(9,2)">
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="single_orders_completed" type="bigserial">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="single_orders_unfinished" type="bigserial">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-        </createTable>
-        <createTable tableName="finished_orders">
-            <column name="order_id" type="bigserial">
-                <constraints nullable="true" primaryKey="true" unique="true"/>
-            </column>
-            <column name="materials" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
             <column name="order_receive_date" type="date">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="order_date" type="date">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="order_note" type="text">
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="single_orders_completed" type="bigserial">
+            <column name="order_date" type="date">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="order_note" type="text">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
+            <column name="single_orders_finished" type="bigserial">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
             <column name="single_orders_unfinished" type="bigserial">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="order_finished" type="boolean">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
         <createTable tableName="single_active_orders">
             <column name="single_active_order_id" type="bigserial">
-                <constraints nullable="true" primaryKey="true" unique="true"/>
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
-            <column name="quantity" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="length_in_mm" type="numeric(9,0)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="length" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="quantity_on_tray" type="numeric(9,0)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="metrs" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="amount_of_trays" type="bigserial">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="materials" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="overall_quantity" type="numeric(9,0)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="metrs" type="numeric(9,2)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="materials" type="numeric(9,2)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
             <column name="finished" type="boolean">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="commentary" type="text">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
         </createTable>
-        <createTable tableName="single_finished_orders">
-            <column name="single_finished_order_id" type="bigserial">
-                <constraints nullable="true" primaryKey="true" unique="true"/>
+        <createTable tableName="trays">
+            <column name="tray_id" type="bigserial">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
-            <column name="quantity" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="tray_name" type="text">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="length" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="metrs" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="materials" type="numeric(8,2)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-            <column name="finished" type="boolean">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
+            <column name="tray_status" type="varchar(255)">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
     </changeSet>

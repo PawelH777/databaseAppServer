@@ -1,10 +1,10 @@
 package com.example.vorappServer;
 
-import com.example.vorappServer.model.Client;
+import com.example.vorappServer.model.Clients;
 import com.example.vorappServer.model.Dimiensions;
 import com.example.vorappServer.model.Orders;
 import com.example.vorappServer.model.User;
-import com.example.vorappServer.repo.ClientRepo;
+import com.example.vorappServer.repo.ClientsRepo;
 import com.example.vorappServer.repo.DimRepo;
 import com.example.vorappServer.repo.OrdersRepo;
 import com.example.vorappServer.repo.UserRepo;
@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class DataLoader implements ApplicationRunner{
     private UserRepo userRepo;
 
     @Autowired
-    private ClientRepo clientRepo;
+    private ClientsRepo clientsRepo;
 
     @Autowired
     private OrdersRepo ordersRepo;
@@ -47,7 +46,7 @@ public class DataLoader implements ApplicationRunner{
         User usr = new User("Admin", pass, true);
         List<Dimiensions> dimsList = new ArrayList<>();
         Dimiensions dim;
-        Client clientObject;
+        Clients clientsObject;
         Orders orderObject;
 
         ResponseEntity<List<User>> responseUsr = new ResponseEntity<List<User>>(userRepo.findByLogin("Admin"), HttpStatus.OK);
@@ -358,8 +357,8 @@ public class DataLoader implements ApplicationRunner{
 //                LocalDate rcvDate = LocalDate.now();
 //                LocalDate ordDate = LocalDate.now().plusDays(5);
 //                String clientsFirmName = "klient" + a;
-//                clientObject = clientRepo.save(new Client(clientsFirmName));
-//                ordersRepo.save(new Orders(clientObject, BigDecimal.TEN, rcvDate, ordDate, "",
+//                clientsObject = clientsRepo.save(new Clients(clientsFirmName));
+//                ordersRepo.save(new Orders(clientsObject, BigDecimal.TEN, rcvDate, ordDate, "",
 //                        4L, 5L));
 //            }
 //        }

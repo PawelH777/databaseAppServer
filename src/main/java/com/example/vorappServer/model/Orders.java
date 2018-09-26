@@ -1,6 +1,5 @@
 package com.example.vorappServer.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -18,16 +17,16 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "orders")
-public class Orders<T> implements Serializable {
+public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "clientId")
-    private Client client;
+    private Clients clients;
 
-    @Column(columnDefinition = "Numeric(8,2) NOT NULL")
+    @Column(columnDefinition = "Numeric(9,2) NOT NULL")
     private BigDecimal materials;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -40,9 +39,12 @@ public class Orders<T> implements Serializable {
 
     private String order_note;
 
-    private Long single_orders_completed;
+    private Long single_orders_finished;
 
     private Long single_orders_unfinished;
+
+    @Column(name = "order_finished")
+    private Boolean orderFinished;
 
     public Long getOrder_id() {
         return order_id;
@@ -52,12 +54,12 @@ public class Orders<T> implements Serializable {
         this.order_id = order_id;
     }
 
-    public Client getClient() {
-        return client;
+    public Clients getClients() {
+        return clients;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClients(Clients clients) {
+        this.clients = clients;
     }
 
     public BigDecimal getMaterials() {
@@ -92,12 +94,12 @@ public class Orders<T> implements Serializable {
         this.order_note = order_note;
     }
 
-    public Long getSingle_orders_completed() {
-        return single_orders_completed;
+    public Long getSingle_orders_finished() {
+        return single_orders_finished;
     }
 
-    public void setSingle_orders_completed(Long single_orders_completed) {
-        this.single_orders_completed = single_orders_completed;
+    public void setSingle_orders_finished(Long single_orders_finished) {
+        this.single_orders_finished = single_orders_finished;
     }
 
     public Long getSingle_orders_unfinished() {
@@ -108,27 +110,37 @@ public class Orders<T> implements Serializable {
         this.single_orders_unfinished = single_orders_unfinished;
     }
 
-    public Orders(Long order_id, Client client, BigDecimal materials, LocalDate order_receive_date, LocalDate order_date,
-                  String order_note, Long single_orders_completed, Long single_orders_unfinished) {
-        this.order_id = order_id;
-        this.client = client;
-        this.materials = materials;
-        this.order_receive_date = order_receive_date;
-        this.order_date = order_date;
-        this.order_note = order_note;
-        this.single_orders_completed = single_orders_completed;
-        this.single_orders_unfinished = single_orders_unfinished;
+    public Boolean getOrderFinished() {
+        return orderFinished;
     }
 
-    public Orders(Client client, BigDecimal materials, LocalDate order_receive_date, LocalDate order_date, String order_note,
-                  Long single_orders_completed, Long single_orders_unfinished) {
-        this.client = client;
+    public void setOrderFinished(Boolean orderFinished) {
+        this.orderFinished = orderFinished;
+    }
+
+    public Orders(Long order_id, Clients clients, BigDecimal materials, LocalDate order_receive_date, LocalDate order_date,
+                  String order_note, Long single_orders_finished, Long single_orders_unfinished, Boolean orderFinished) {
+        this.order_id = order_id;
+        this.clients = clients;
         this.materials = materials;
         this.order_receive_date = order_receive_date;
         this.order_date = order_date;
         this.order_note = order_note;
-        this.single_orders_completed = single_orders_completed;
+        this.single_orders_finished = single_orders_finished;
         this.single_orders_unfinished = single_orders_unfinished;
+        this.orderFinished = orderFinished;
+    }
+
+    public Orders(Clients clients, BigDecimal materials, LocalDate order_receive_date, LocalDate order_date, String order_note,
+                  Long single_orders_finished, Long single_orders_unfinished, Boolean orderFinished) {
+        this.clients = clients;
+        this.materials = materials;
+        this.order_receive_date = order_receive_date;
+        this.order_date = order_date;
+        this.order_note = order_note;
+        this.single_orders_finished = single_orders_finished;
+        this.single_orders_unfinished = single_orders_unfinished;
+        this.orderFinished = orderFinished;
     }
 
     public Orders() {
