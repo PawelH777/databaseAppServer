@@ -19,49 +19,54 @@ import java.util.List;
 @RequestMapping("/users")
 public class UsersController {
 
+    private final UserRepo userRepo;
+
     @Autowired
-    private UserRepo userRepo;
+    public UsersController(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
     @RequestMapping
     public ResponseEntity findAll(){
         return new ResponseEntity<>(userRepo.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping("/user/id/{id}")
+    @RequestMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable("id") Long user_id){
         User user = userRepo.findById(user_id).orElse(null);
         assert user != null;
         return  new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/user/login/{login}")
+    @GetMapping("/login/{login}")
     public List<User> findByLogin(@PathVariable(value = "login") String login)
     {
         return userRepo.findByLogin(login);
     }
 
-    @PostMapping(value = "/createuser")
+    @PostMapping(value = "/create")
     public User createUser(@RequestBody User user){
         return userRepo.save(user);
     }
 
-    @PutMapping(value = "/user/update/{id}")
-    public User updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User user){
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User user){
         User finduser = userRepo.findById(userId)
                 .orElse(null);
-
+        if(finduser == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         finduser.setLogin(user.getLogin());
         finduser.setPassword(user.getPassword());
         finduser.setAdmin(user.isAdmin());
-        return userRepo.save(finduser);
+        return new ResponseEntity<>(userRepo.save(finduser), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/user/delete/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable(value = "id") Long userId){
         User usrDelete = userRepo.findById(userId).orElse(null);
-
+        if(usrDelete == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         userRepo.delete(usrDelete);
-
         return ResponseEntity.ok().build();
     }
 }

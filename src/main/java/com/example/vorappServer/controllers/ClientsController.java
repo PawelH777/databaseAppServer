@@ -20,43 +20,44 @@ import java.util.List;
 @RequestMapping("/clients")
 public class ClientsController {
 
-    @Autowired
-    private ClientsRepo clientsRepo;
+    private final ClientsRepo clientsRepo;
 
     @Autowired
-    private OrdersRepo ordersRepo;
-
-    @Autowired
-    private SingleOrdersRepo singleOrdersRepo;
+    public ClientsController(ClientsRepo clientsRepo) {
+        this.clientsRepo = clientsRepo;
+    }
 
     @RequestMapping
     public ResponseEntity<Collection<Clients>> findAll(){
         return new ResponseEntity<>(clientsRepo.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/client/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Clients> findById(@PathVariable("id") Long client_id){
         Clients cli = clientsRepo.findById(client_id).orElse(null);
         return  new ResponseEntity<>(cli, HttpStatus.OK);
     }
 
-    @PostMapping("/client/firmname")
+    @PostMapping("/firm-name")
     public List<Clients> findByFirmName(@RequestBody ClientsHelpClass clientsHelpClass){
         return clientsRepo.findByfirmName(clientsHelpClass.getFirmName());
     }
 
-    @PostMapping(value = "/createclient")
+    @PostMapping(value = "/create")
     public Clients createClient(@RequestBody Clients clients){
         return clientsRepo.save(clients);
     }
 
-    @PutMapping(value = "/client/update/{id}")
-    public Clients updateClient(@PathVariable(value = "id") Long clientId, @Valid @RequestBody Clients clients){
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<Clients> updateClient(@PathVariable(value = "id") Long clientId, @Valid @RequestBody Clients clients){
         Clients findclient = clientsRepo.findById(clientId)
                 .orElse(null);
 
+        if(findclient == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         findclient.setFirmName(clients.getFirmName());
 
-        return clientsRepo.save(findclient);
+        return new ResponseEntity<>(clientsRepo.save(findclient), HttpStatus.OK);
     }
 }

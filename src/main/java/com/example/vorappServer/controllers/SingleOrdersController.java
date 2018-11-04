@@ -21,14 +21,18 @@ import java.util.Optional;
 @RequestMapping("/single-orders")
 public class SingleOrdersController {
 
-    @Autowired
-    private SingleOrdersRepo singleOrdersRepo;
+    private final SingleOrdersRepo singleOrdersRepo;
+
+    private final TraysRepo traysRepo;
+
+    private final SingleOrdersServices singleOrdersServices;
 
     @Autowired
-    private TraysRepo traysRepo;
-
-    @Autowired
-    private SingleOrdersServices singleOrdersServices;
+    public SingleOrdersController(SingleOrdersRepo singleOrdersRepo, TraysRepo traysRepo, SingleOrdersServices singleOrdersServices) {
+        this.singleOrdersRepo = singleOrdersRepo;
+        this.traysRepo = traysRepo;
+        this.singleOrdersServices = singleOrdersServices;
+    }
 
     @RequestMapping
     public ResponseEntity<List<SingleOrders>> findAll(){
@@ -40,17 +44,12 @@ public class SingleOrdersController {
         return new ResponseEntity<List>(singleOrdersRepo.findByOrders(orderObject), HttpStatus.OK);
     }
 
-    @PostMapping("/dimension")
-    public ResponseEntity<List> findByDimiensions(@RequestBody Dimiensions dimensionObject){
-        return new ResponseEntity<List>(singleOrdersRepo.findByDimension(dimensionObject), HttpStatus.OK);
-    }
-
-    @PostMapping("/create-single-order")
+    @PostMapping("/create")
     public SingleOrders createSingleOrder(@RequestBody SingleOrders singleOrders){
         return singleOrdersRepo.save(singleOrders);
     }
 
-    @PutMapping("/update-single-order")
+    @PutMapping("/update")
     public ResponseEntity<SingleOrders> updateSingleOrder(@RequestBody SingleOrders singleOrders){
         Optional<SingleOrders> singleOrderFromDatabase = singleOrdersRepo.findById(singleOrders.getSingle_active_order_id());
 
@@ -85,20 +84,10 @@ public class SingleOrdersController {
     @RequestMapping("/delete/order/{id}")
     public ResponseEntity<Object> deleteSingleOrderByOrder(@PathVariable(value = "id") Long singleOrderId, @RequestBody Orders order){
         SingleOrders singleOrdersObject= singleOrdersRepo.findById(singleOrderId).orElse(null);
-
-        assert singleOrdersObject != null;
+        if(singleOrdersObject == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         traysRepo.deleteBySingleOrders(singleOrdersObject);
         singleOrdersRepo.deleteByOrders(order);
-        return ResponseEntity.ok().build();
-    }
-
-    @RequestMapping("/delete/dimension/{id}")
-    public ResponseEntity<Object> deleteSingleOrderByDimension(@PathVariable(value = "id") Long singleOrderId, @RequestBody Dimiensions dimension){
-        SingleOrders singleOrdersObject= singleOrdersRepo.findById(singleOrderId).orElse(null);
-
-        assert singleOrdersObject != null;
-        traysRepo.deleteBySingleOrders(singleOrdersObject);
-        singleOrdersRepo.deleteByDimension(dimension);
         return ResponseEntity.ok().build();
     }
 }

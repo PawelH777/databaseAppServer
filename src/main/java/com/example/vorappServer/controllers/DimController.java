@@ -21,48 +21,56 @@ import java.util.List;
 @RequestMapping("/dims")
 public class DimController {
 
-    @Autowired
-    private DimRepo dimRepo;
+    private final DimRepo dimRepo;
+
+    private final SingleOrdersRepo singleOrdersRepo;
 
     @Autowired
-    private SingleOrdersRepo singleOrdersRepo;
+    public DimController(DimRepo dimRepo, SingleOrdersRepo singleOrdersRepo) {
+        this.dimRepo = dimRepo;
+        this.singleOrdersRepo = singleOrdersRepo;
+    }
 
     @RequestMapping
     public ResponseEntity<Collection<Dimiensions>> findAll(){
         return new ResponseEntity<>(dimRepo.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/dim/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Dimiensions> findById(@PathVariable("id") Long dim_id){
         Dimiensions dim = dimRepo.findById(dim_id).orElse(null);
         return  new ResponseEntity<>(dim, HttpStatus.OK);
     }
 
-    @PostMapping("/dim/find")
+    @PostMapping("/find")
     public List findByDim(@RequestBody DimsHelpClass dimsHelpClass){
         return dimRepo.findByDim(dimsHelpClass.getFirstDimension(), dimsHelpClass.getSecondDimension(),
                 dimsHelpClass.getThickness(), dimsHelpClass.getWeight());
     }
 
-    @PostMapping(value = "/createdim")
+    @PostMapping(value = "/create")
     public Dimiensions createDim(@RequestBody Dimiensions dimiensions){
         return dimRepo.save(dimiensions);
     }
 
-    @PutMapping(value = "/dim/update/{id}")
-    public Dimiensions updateDim(@PathVariable(value = "id") Long dimId, @Valid @RequestBody Dimiensions dim){
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<Dimiensions> updateDim(@PathVariable(value = "id") Long dimId, @Valid @RequestBody Dimiensions dim){
         Dimiensions finddim = dimRepo.findById(dimId)
                 .orElse(null);
+
+
+        if(finddim == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         finddim.setFirstDimension(dim.getFirstDimension());
         finddim.setSecondDimension(dim.getSecondDimension());
         finddim.setThickness(dim.getThickness());
         finddim.setWeight(dim.getWeight());
 
-        return dimRepo.save(finddim);
+        return new ResponseEntity<>(dimRepo.save(finddim),HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/dim/delete/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteDim(@PathVariable(value = "id") Long dimId){
         Dimiensions dimDelete = dimRepo.findById(dimId).orElse(null);
         if(dimDelete != null){

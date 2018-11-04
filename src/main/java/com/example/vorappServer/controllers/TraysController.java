@@ -15,21 +15,25 @@ import java.util.List;
 @RequestMapping("/trays")
 public class TraysController {
 
+    private final TraysRepo traysRepo;
+
     @Autowired
-    private TraysRepo traysRepo;
+    public TraysController(TraysRepo traysRepo) {
+        this.traysRepo = traysRepo;
+    }
 
     @GetMapping
     public ResponseEntity<List<Trays>> findAll(){
         return new ResponseEntity<>(traysRepo.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/find-by-single-order")
+    @PostMapping("/single-order")
     public ResponseEntity<List> findAllTraysBySingleOrder(@RequestBody SingleOrders singleOrder){
         return new ResponseEntity<>(traysRepo.findAllTraysBySingleOrders(singleOrder), HttpStatus.OK);
     }
 
     @Transactional
-    @PostMapping("/create-by-single-order")
+    @PostMapping("/create")
     public ResponseEntity createTraysBySingleOrder(@RequestBody  SingleOrders singleOrder){
         int numberOfTrays = singleOrder.getAmount_of_trays().intValue();
 

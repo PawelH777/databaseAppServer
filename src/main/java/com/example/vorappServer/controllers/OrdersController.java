@@ -20,29 +20,25 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrdersController {
 
-    @Autowired
-    private OrdersRepo ordersRepo;
+    private final OrdersRepo ordersRepo;
+
+    private final SingleOrdersServices singleOrdersServices;
 
     @Autowired
-    private SingleOrdersRepo singleOrdersRepo;
-
-    @Autowired
-    private SingleOrdersServices singleOrdersServices;
+    public OrdersController(OrdersRepo ordersRepo, SingleOrdersServices singleOrdersServices) {
+        this.ordersRepo = ordersRepo;
+        this.singleOrdersServices = singleOrdersServices;
+    }
 
     @RequestMapping
     public ResponseEntity<List<Orders>> findAll(){
         return new ResponseEntity<>(ordersRepo.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/order/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Orders> findById(@PathVariable("id") Long order_id){
         Orders ord = ordersRepo.findById(order_id).orElse(null);
         return  new ResponseEntity<>(ord, HttpStatus.OK);
-    }
-
-    @PostMapping("/clients")
-    public ResponseEntity<List> findByClientId(@RequestBody Clients clients){
-        return new ResponseEntity<List>(ordersRepo.findByClients(clients), HttpStatus.OK);
     }
 
     @GetMapping("/finished/{finished}")
@@ -50,12 +46,12 @@ public class OrdersController {
         return new ResponseEntity<List>(ordersRepo.findByOrderFinished(finished), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/createorder")
+    @PostMapping(value = "/create")
     public Orders createOrder(@RequestBody Orders order){
         return ordersRepo.save(order);
     }
 
-    @PutMapping(value = "/order/update/{id}")
+    @PutMapping(value = "/update/{id}")
     public ResponseEntity<Orders>  updateOrder(@PathVariable(value = "id") Long orderId, @Valid @RequestBody Orders order){
         Orders findorder = ordersRepo.findById(orderId)
                 .orElse(null);
@@ -75,7 +71,7 @@ public class OrdersController {
         return new ResponseEntity<Orders>(ordersRepo.save(findorder), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/order/change-status")
+    @PutMapping(value = "/change-status")
     public ResponseEntity<Orders> changeOrdersStatus(@RequestBody Orders order){
 
         if(order == null)
@@ -89,18 +85,13 @@ public class OrdersController {
         return new ResponseEntity<>(ordersRepo.save(order), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/order/delete/{id}")
+    @RequestMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteOrder(@PathVariable(value = "id") Long orderId){
         Orders ordDelete = ordersRepo.findById(orderId).orElse(null);
-        assert ordDelete != null;
+        if(ordDelete == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         singleOrdersServices.deleteSingleOrdersByOrder(ordDelete);
         ordersRepo.delete(ordDelete);
-        return ResponseEntity.ok().build();
-    }
-
-    @RequestMapping(value = "/delete/clients")
-    public ResponseEntity<Object> deleteOrdersByClient(@RequestBody Clients clients){
-        ordersRepo.deleteByClients(clients);
         return ResponseEntity.ok().build();
     }
 }
